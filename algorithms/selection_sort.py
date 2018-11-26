@@ -5,6 +5,8 @@ class SelectionSort(object):
 		self.array = array
 
 	def run(self):
+		print 'Executing selection sort'
+		
 		for i in range(len(self.array) - 1, 0, -1):
 			max_num_pos = 0
 			

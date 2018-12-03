@@ -4,12 +4,12 @@ class QuickSort(object):
 		super(QuickSort, self).__init__()
 		self.array = array
 	
-	def run(self, arr):
+	def run(self):
 		print 'Executing quick sort'
 		
-		self.quickSortHelper(arr, 0, len(self.array) - 1)
+		self.quickSortHelper(self.array, 0, len(self.array) - 1)
 
-		return arr
+		return self.array
 
 	def quickSortHelper(self, array, first, last):
 		if first < last:

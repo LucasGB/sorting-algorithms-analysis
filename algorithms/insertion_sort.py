@@ -3,11 +3,14 @@ class InsertionSort(object):
 	def __init__(self, array):
 		super(InsertionSort, self).__init__()
 		self.array = array
+		self.n_inst = 0
 
 	def run(self):
-		print 'Executing insertion sort'
+		print 'Executing insertion sort for ' + str(len(self.array)) + ' elements'
 		
 		for i in range(1, len(self.array)):
+			self.n_inst += 1
+
 			currentvalue = self.array[i]
 			position = i
 			
@@ -17,4 +20,4 @@ class InsertionSort(object):
 
 			self.array[position] = currentvalue
 
-		return self.array
+		return self.n_inst

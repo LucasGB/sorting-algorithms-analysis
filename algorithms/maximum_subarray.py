@@ -5,5 +5,5 @@ class MaximumSubarray(object):
 		self.array = array
 	
 	def run(self):
-		print 'Executing Maximum Subarray Search'
+		print 'Executing Maximum Subarray Search for ' + str(len(self.array)) + ' elements'
 		

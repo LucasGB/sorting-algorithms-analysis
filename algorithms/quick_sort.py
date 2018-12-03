@@ -3,15 +3,18 @@ class QuickSort(object):
 	def __init__(self, array):
 		super(QuickSort, self).__init__()
 		self.array = array
+		self.n_inst = 0
 	
 	def run(self):
-		print 'Executing quick sort'
+		print 'Executing quick sort for ' + str(len(self.array)) + ' elements'
 		
 		self.quickSortHelper(self.array, 0, len(self.array) - 1)
 
-		return self.array
+		return self.n_inst
 
 	def quickSortHelper(self, array, first, last):
+		self.n_inst += 1
+
 		if first < last:
 			splitpoint = self.partition(array, first, last)
 
@@ -26,6 +29,8 @@ class QuickSort(object):
 		done = False
 
 		while not done:
+			self.n_inst += 1
+			
 			while leftmark <= rightmark and array[leftmark] <= pivotvalue:
 				leftmark = leftmark + 1
 

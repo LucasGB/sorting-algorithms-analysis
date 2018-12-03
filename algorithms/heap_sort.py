@@ -3,20 +3,22 @@ class HeapSort(object):
 	def __init__(self, array):
 		super(HeapSort, self).__init__()
 		self.array = array
+		self.n_inst = 0
 	
-	def run(self, arr):
-		print 'Executing Heap Sort'
-		n = len(arr) 
+	def run(self):
+		print 'Executing Heap Sort for ' + str(len(self.array)) + ' elements'
+		n = len(self.array) 
 
 		for i in range(n, -1, -1): 
-			self.heapify(arr, n, i) 
+			self.n_inst += 1
+			self.heapify(self.array, n, i) 
 
 		for i in range(n-1, 0, -1): 
-			arr[i], arr[0] = arr[0], arr[i]
-			self.heapify(arr, i, 0)
+			self.n_inst += 1
+			self.array[i], self.array[0] = self.array[0], self.array[i]
+			self.heapify(self.array, i, 0)
 
-		return arr
-
+		return self.n_inst
 
 	def heapify(self, arr, n, i): 
 		largest = i

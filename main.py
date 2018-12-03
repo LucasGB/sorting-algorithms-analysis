@@ -8,41 +8,28 @@ from algorithms.quick_sort import QuickSort
 from algorithms.binary_search import BinarySearch
 from algorithms.maximum_subarray import MaximumSubarray
 
-
 from time import time
 
+functions = [BubbleSort, OptimizedBubbleSort, InsertionSort, SelectionSort, MergeSort, HeapSort, QuickSort, MaximumSubarray]
+n = [1000, 10000, 100000]
+
 if __name__ == '__main__':
-	with open('data/file_10000.txt', 'r') as file:
-		data = file.read()
-		array = [int(i) for i in data.split()]
-		
-		#bubble_sort = BubbleSort(array[:])
-		#print bubble_sort.run()
-		
-		#optimized_bubble_sort = OptimizedBubbleSort(array[:])
-		#print optimized_bubble_sort.run()
 
-		#insertion_sort = InsertionSort(array[:])
-		#print insertion_sort.run()
+	for e in n:
+		with open('data/file_' + str(e) + '.txt', 'r') as input_file:
+			data = input_file.read()
+			array = [int(i) for i in data.split()]
 
-		#selection_sort = SelectionSort(array[:])
-		#print selection_sort.run()
-
-		#merge_sort = MergeSort(array[:])
-		#print merge_sort.run(array[:], 0, len(array[:]) - 1)
-
-		#heap_sort = HeapSort(array[:])
-		#print heap_sort.run(array[:])
-
-		start_time = time()
-		quick_sort = QuickSort(array[:])
-		sorted_arr = quick_sort.run()
-
-		binary_search = BinarySearch(sorted_arr)
-		print binary_search.run(1)
-
-		maximum_subarray = MaximumSubarray(array)
-		print maximum_subarray.run()
-		end_time = time() - start_time
-
-		print 'Tempo de execução: %0.3f segundos' % end_time
+			for function in functions:
+				with open('results/'+ str(function).split('.')[2][:-2] + '_' + str(e) + '.txt', 'w') as file:
+					start_time = time()
+					n_inst = function(array[:]).run()
+					end_time = time() - start_time
+					file.write('{} {}'.format(end_time, n_inst))
+			
+			with open('results/BinarySearch_' + str(e) + '.txt', 'w') as file:
+				sorted_array = MergeSort(array[:]).run()
+				start_time = time()
+				n_inst = BinarySearch(array[:]).run(1)
+				end_time = time() - start_time
+				file.write('{} {}'.format(end_time, n_inst))
